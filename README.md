@@ -22,11 +22,11 @@ Nesta Fase 3, os dados coletados pelos sensores da Fase 2 são carregados em um 
 
 O arquivo de dados foi nomeado como FarmtechsolutionsPBL e carregado em uma instância Oracle (oracle.fiap.com.br). A tabela sensor_readings foi criada via DDL, e a importação automatizada foi realizada por script Python utilizando a biblioteca oracledb. Ao todo, 48 registros foram importados, correspondendo a leituras coletadas em 14/04/2026 das 07:00 às 10:55.
 
-Após a importação, foram executadas 10 consultas SQL analíticas no Oracle, abrangendo estatísticas descritivas, análise de acionamentos da bomba, detecção de leituras críticas (baixa umidade + ausência de nutrientes), leituras com pH fora da faixa ideal e visão agregada por hora. Os resultados demonstram que a bomba foi acionada em 45,8% das leituras, o pH médio do solo ficou em 6,04 e a umidade média foi de 50,92%.
+Após a importação, foram executadas consultas SQL analíticas no Oracle, abrangendo estatísticas descritivas, análise de acionamentos da bomba, detecção de leituras críticas (baixa umidade + ausência de nutrientes), leituras com pH fora da faixa ideal e visão agregada por hora. Os resultados demonstram que a bomba foi acionada em 45,8% das leituras, o pH médio do solo ficou em 6,04 e a umidade média foi de 50,92%.
 
 ## 🎥 Vídeo Demonstrativo
  
-> Demonstração completa do projeto: conexão Oracle, importação do CSV, execução das 10 consultas SQL e geração dos gráficos Python.
+> Demonstração completa do projeto: conexão Oracle, importação do CSV, execução das consultas SQL e Python.
  
 [![Assista ao vídeo de demonstração](https://img.youtube.com/vi/SEU_VIDEO_ID/maxresdefault.jpg)
  
@@ -105,10 +105,10 @@ README.md: Arquivo que serve como guia e explicação geral sobre o projeto.
 - Python 3.9+
 - Acesso ao Oracle FIAP (`oracle.fiap.com.br:1521/ORCL`) ou Oracle Database XE local
 - Bibliotecas Python: `pip install oracledb pandas matplotlib`
+
 ### Passo 1 — Configurar credenciais
  
 Abra o arquivo `scripts/farmtech_oracle.py` e edite as variáveis no topo:
- 
 ```python
 DB_USER     = "seu_rm"        # ex: rm568860
 DB_PASSWORD = "sua_senha"     # senha do Oracle FIAP
@@ -121,7 +121,7 @@ DB_DSN      = "oracle.fiap.com.br:1521/ORCL"
 cd scripts
 python farmtech_oracle.py
 ```
- 
+
 O script executa automaticamente em 6 módulos:
  
 1. **Módulo 1** — Conexão com o Oracle
