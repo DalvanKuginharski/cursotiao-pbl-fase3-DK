@@ -139,21 +139,17 @@ Para executar as consultas separadamente, abra o arquivo `scripts/consultas_orac
 ## 🗄️ Evidências do Banco de Dados Oracle
  
 ### Conexão, tabela criada e estrutura de colunas
- 
-![Prints Oracle](assets/prints/01_conexao_oracle.png)
- 
+<img width="1365" height="729" alt="image" src="https://github.com/user-attachments/assets/0be6ce36-c420-4927-9b7a-fc73bd95e682" />
+
 ### Importação dos dados e prévia dos registros
- 
-![Importação Python](assets/prints/04_python_importacao.png)
- 
+<img width="1366" height="727" alt="image" src="https://github.com/user-attachments/assets/e1a6f17b-0ef0-4dda-894b-5390aeb76a49" />
+
 ### Consulta SQL — Todos os registros (SELECT *)
- 
-![SELECT *](assets/prints/05_select_all.png)
- 
+<img width="1363" height="730" alt="image" src="https://github.com/user-attachments/assets/593c0e93-7067-45c7-8509-f311eca40244" />
+
 ### Consulta SQL — Leituras críticas (baixa umidade + nutrientes ausentes)
- 
-![Leituras críticas](assets/prints/09_leituras_criticas.png)
- 
+<img width="1364" height="728" alt="image" src="https://github.com/user-attachments/assets/67dbd840-5c16-410c-bd35-34bc10ae8ed2" />
+
 ---
  
 ## 📊 Visualizações dos Dados
