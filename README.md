@@ -123,25 +123,25 @@ SELECT COUNT(*) AS total_registros FROM sensor_readings;
 ## Visualizações dos Dados
 
 ### Dashboard Geral
-![Dashboard FarmTech](assets/graficos/dashboard_geral.png)
+<img width="2000" height="1395" alt="dashboard_geral" src="https://github.com/user-attachments/assets/13387836-1be5-41b1-979f-525e31d52165" />
 
 ### Umidade do Solo ao longo do tempo
-![Umidade](assets/graficos/grafico_umidade.png)
+<img width="1934" height="585" alt="grafico_umidade" src="https://github.com/user-attachments/assets/f9c36289-58f6-4b5a-bbdf-22fd9e14a1f1" />
 
 ### pH do Solo
-![pH](assets/graficos/grafico_ph.png)
+<img width="1934" height="585" alt="grafico_ph" src="https://github.com/user-attachments/assets/ff989137-7433-44f4-a425-9ff555a3b78e" />
 
 ### Chuva e Probabilidade de Precipitação
-![Chuva](assets/graficos/grafico_chuva.png)
+<img width="1935" height="585" alt="grafico_chuva" src="https://github.com/user-attachments/assets/7001c238-e667-42b7-94c3-35fe2f866932" />
 
 ### Consulta 4 — Acionamentos da Bomba
-![Bomba](assets/graficos/consulta4_bomba.png)
+<img width="885" height="585" alt="consulta4_bomba" src="https://github.com/user-attachments/assets/4707985a-f777-46a8-9fe8-68c9be59cb84" />
 
 ### Consulta 7 — Nutrientes N, P, K
-![Nutrientes](assets/graficos/consulta7_nutrientes.png)
+<img width="1035" height="585" alt="consulta7_nutrientes" src="https://github.com/user-attachments/assets/2d12c450-00d8-4211-9b07-96730f3c42ad" />
 
 ### Consulta 9 — Médias por Hora
-![Por Hora](assets/graficos/consulta9_por_hora.png)
+<img width="2084" height="595" alt="consulta9_por_hora" src="https://github.com/user-attachments/assets/13b8d497-da5c-4b77-81d6-b470d7d70f1c" />
 
 ---
 
