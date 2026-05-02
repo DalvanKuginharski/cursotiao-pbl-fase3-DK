@@ -1,9 +1,8 @@
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
-<img width="1364" height="728" alt="image" src="https://github.com/user-attachments/assets/6bf817aa-098b-4561-8941-235371c12065" />
+<img width="2385" height="642" alt="image" src="https://github.com/user-attachments/assets/14c0c85b-857d-414f-8546-d1f66f1b59d5" />
 
-<br>
 
 # FarmTech Solutions — Banco de Dados com Oracle
 
