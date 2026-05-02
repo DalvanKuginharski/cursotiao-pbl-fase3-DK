@@ -24,6 +24,14 @@ O arquivo de dados foi nomeado como FarmtechsolutionsPBL e carregado em uma inst
 
 Após a importação, foram executadas 10 consultas SQL analíticas no Oracle, abrangendo estatísticas descritivas, análise de acionamentos da bomba, detecção de leituras críticas (baixa umidade + ausência de nutrientes), leituras com pH fora da faixa ideal e visão agregada por hora. Os resultados demonstram que a bomba foi acionada em 45,8% das leituras, o pH médio do solo ficou em 6,04 e a umidade média foi de 50,92%.
 
+## 🎥 Vídeo Demonstrativo
+ 
+> Demonstração completa do projeto: conexão Oracle, importação do CSV, execução das 10 consultas SQL e geração dos gráficos Python.
+ 
+[![Assista ao vídeo de demonstração](https://img.youtube.com/vi/SEU_VIDEO_ID/maxresdefault.jpg)
+ 
+> 🔒 Vídeo publicado como **não listado** no YouTube.
+
 ---
 
 ## 📁 Estrutura de pastas
