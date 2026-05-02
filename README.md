@@ -93,46 +93,63 @@ README.md: Arquivo que serve como guia e explicação geral sobre o projeto.
 ## 🔧 Como executar o código
 
 ### Pré-requisitos
-
-- Oracle Database XE 21c (ou superior) instalado e em execução
+ 
 - Python 3.9+
-- Biblioteca `oracledb`: `pip install oracledb`
-- Oracle SQL Developer (para visualização e execução das consultas)
-
-### Fase 1 — Configurar a conexão
-
-Edite as variáveis no topo do arquivo `scripts/importar_oracle.py`:
-
+- Acesso ao Oracle FIAP (`oracle.fiap.com.br:1521/ORCL`) ou Oracle Database XE local
+- Bibliotecas Python: `pip install oracledb pandas matplotlib`
+### Passo 1 — Configurar credenciais
+ 
+Abra o arquivo `scripts/farmtech_oracle.py` e edite as variáveis no topo:
+ 
 ```python
-DB_USER     = "seu_usuario"
-DB_PASSWORD = "sua_senha"
-DB_DSN      = "localhost:1521/XEPDB1"
+DB_USER     = "seu_rm"        # ex: rm568860
+DB_PASSWORD = "sua_senha"     # senha do Oracle FIAP
+DB_DSN      = "oracle.fiap.com.br:1521/ORCL"
 ```
-
-### Fase 2 — Importar os dados para o Oracle
-
+ 
+### Passo 2 — Executar o script principal
+ 
 ```bash
 cd scripts
-python importar_oracle.py
+python farmtech_oracle.py
 ```
+ 
+O script executa automaticamente em 6 módulos:
+ 
+1. **Módulo 1** — Conexão com o Oracle
+2. **Módulo 2** — Criação da tabela `sensor_readings` (DDL)
+3. **Módulo 3** — Importação dos 48 registros do CSV via `executemany`
+4. **Módulo 4** — Execução das 10 consultas SQL analíticas
+5. **Módulo 5** — Geração de 7 gráficos salvos em `assets/graficos/`
+6. **Módulo 6** — Relatório final no terminal
+### Passo 3 — Consultas SQL individuais
+ 
+Para executar as consultas separadamente, abra o arquivo `scripts/consultas_oracle.sql` em qualquer cliente Oracle (SQL Developer, SQL*Plus, etc.).
 
-O script irá:
-1. Criar (ou recriar) a tabela `sensor_readings`
-2. Ler o arquivo `FarmtechsolutionsPBL.csv`
-3. Inserir os 48 registros em lote via `executemany`
-4. Exibir confirmação com total de registros importados
-
-### Fase 3 — Executar as consultas
-### Conexão e estrutura
-
-| Conexão ativa | Tabela criada | Colunas | Importação dos dados | Acionamentos da bomba de irrigação | Leituras críticas (baixa umidade + nutrientes ausentes)
-<img width="1364" height="724" alt="image" src="https://github.com/user-attachments/assets/7cacb065-fc14-4fa8-93e7-d6dec366336d" />
-<img width="1363" height="727" alt="image" src="https://github.com/user-attachments/assets/c7ec5010-1988-496b-9ee7-5fddeb623841" />
-<img width="1365" height="724" alt="image" src="https://github.com/user-attachments/assets/b9e29078-9bf5-47c3-a31c-1bcb8efb28e7" />
-<img width="1364" height="729" alt="image" src="https://github.com/user-attachments/assets/6191d4b8-2083-4278-a81b-fb4f4b16e908" />
-
-## Visualizações dos Dados
-
+---
+ 
+## 🗄️ Evidências do Banco de Dados Oracle
+ 
+### Conexão, tabela criada e estrutura de colunas
+ 
+![Prints Oracle](assets/prints/01_conexao_oracle.png)
+ 
+### Importação dos dados e prévia dos registros
+ 
+![Importação Python](assets/prints/04_python_importacao.png)
+ 
+### Consulta SQL — Todos os registros (SELECT *)
+ 
+![SELECT *](assets/prints/05_select_all.png)
+ 
+### Consulta SQL — Leituras críticas (baixa umidade + nutrientes ausentes)
+ 
+![Leituras críticas](assets/prints/09_leituras_criticas.png)
+ 
+---
+ 
+## 📊 Visualizações dos Dados
+ 
 ### Dashboard Geral
 <img width="2000" height="1395" alt="dashboard_geral" src="https://github.com/user-attachments/assets/13387836-1be5-41b1-979f-525e31d52165" />
 
@@ -153,14 +170,37 @@ O script irá:
 
 ### Consulta 9 — Médias por Hora
 <img width="2084" height="595" alt="consulta9_por_hora" src="https://github.com/user-attachments/assets/13b8d497-da5c-4b77-81d6-b470d7d70f1c" />
-
+ 
 ---
-
+ 
+## 🔍 Consultas SQL Implementadas
+ 
+| # | Descrição |
+|---|---|
+| 1 | Total de registros importados |
+| 2 | Todos os registros ordenados por timestamp |
+| 3 | Estatísticas agregadas (AVG, MIN, MAX) de umidade, pH e chuva |
+| 4 | Frequência de acionamento da bomba (ON x OFF) com percentual |
+| 5 | Leituras com umidade alta (≥ 60%) |
+| 6 | Leituras com chuva detectada (rain_mm > 0) ordenadas por volume |
+| 7 | Contagem de registros com nutrientes N, P, K presentes |
+| 8 | Leituras com pH fora da faixa ideal (< 5.5 ou > 7.0) |
+| 9 | Visão agregada por hora: média de umidade, pH e acionamentos da bomba |
+| 10 | Leituras críticas: baixa umidade com ausência de nutrientes |
+ 
+---
+ 
 ## 🗃 Histórico de lançamentos
-
-- 0.3.0 - 02/05/2026 — Fase 3: importação Oracle + consultas SQL analíticas
-- 0.2.0 - 14/04/2026 — Fase 2: código C/C++ de coleta de dados dos sensores
-- 0.1.0 - 23/03/2026 — Fase 1: concepção da FarmTech Solutions e modelagem inicial
-
+ 
+- 0.3.0 — 02/05/2026 — Fase 3: importação Oracle + 10 consultas SQL analíticas + gráficos Python
+- 0.2.0 — 14/04/2026 — Fase 2: código C/C++ de coleta de dados dos sensores (ESP32/Arduino)
+- 0.1.0 — 23/03/2026 — Fase 1: concepção da FarmTech Solutions e modelagem inicial
+---
+ 
+## 📋 Licença
+ 
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+[MODELO GIT FIAP](https://github.com/agodoi/template) por [FIAP](https://fiap.com.br) está licenciado sobre [Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1).
 ---
 
