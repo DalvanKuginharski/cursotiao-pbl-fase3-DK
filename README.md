@@ -1,0 +1,133 @@
+(https://github.com/user-attachments/files/27303730/README.8.md)
+# FIAP - Faculdade de Informática e Administração Paulista
+
+<p align="center">
+<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+</p>
+
+<br>
+
+# FarmTech Solutions — Banco de Dados com Oracle
+
+## FarmTech Solutions - PBL
+
+## 👨‍🎓 Integrante:
+- Dalvan Kuginharski
+---
+
+## 📜 Descrição
+
+O PBL (Project-Based Learning) do Curso de Inteligência Artificial da FIAP simula a trajetória de crescimento de uma startup. A empresa fictícia **FarmTech Solutions** atua como consultoria em soluções tecnológicas para o agronegócio — setor apontado como um dos mais promissores para aplicação de IA no Brasil, segundo o *Global AI Jobs Barometer* da PwC (2025).
+
+Nesta **Fase 3**, os dados coletados pelos sensores da Fase 2 são carregados em um banco de dados relacional **Oracle**. Os sensores simulados via código C/C++ (Arduino/ESP32) registram, a cada 5 minutos, variáveis críticas do solo e da irrigação: umidade, pH, presença de nutrientes (N, P, K), probabilidade de chuva, volume pluviométrico e estado da bomba d'água.
+
+O arquivo de dados foi nomeado como **FarmtechsolutionsPBL** e carregado em uma instância Oracle. A tabela `sensor_readings` foi criada via DDL, e a importação automatizada foi realizada por script Python utilizando a biblioteca `oracledb`. Ao todo, **48 registros** foram importados, correspondendo a leituras coletadas em 14/04/2026 das 07:00 às 10:55.
+
+Após a importação, foram executadas **10 consultas SQL analíticas** no Oracle SQL Developer, abrangendo estatísticas descritivas, análise de acionamentos da bomba, detecção de leituras críticas (baixa umidade + ausência de nutrientes), leituras com pH fora da faixa ideal e visão agregada por hora. Os resultados demonstram que a bomba foi acionada em 45,8% das leituras, o pH médio do solo ficou em 6,04 e a umidade média foi de 50,9%.
+
+---
+
+## 📁 Estrutura de pastas
+
+Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+
+- **.github**: Arquivos de configuração do GitHub para gerenciar e automatizar processos no repositório.
+- **assets**: Arquivos relacionados a elementos não-estruturados, como imagens e o logo da FIAP.
+- **config**: Arquivos de configuração usados para parâmetros e ajustes do projeto (ex: string de conexão Oracle).
+- **document**: Documentos do projeto solicitados pelas atividades. Na subpasta `other`, documentos complementares.
+- **scripts**: Scripts auxiliares para tarefas específicas — neste projeto, o script de importação Oracle e as consultas SQL.
+- **src**: Todo o código fonte criado para o desenvolvimento do projeto ao longo das fases (inclui código C/C++ da Fase 2).
+- **README.md**: Arquivo que serve como guia e explicação geral sobre o projeto.
+
+```
+📦 farmtech-pbl/
+│
+├── .github/
+├── assets/
+│   └── logo-fiap.png
+├── config/
+├── document/
+│   └── other/
+│       └── Relatorio_FarmTech_PBL_Fase3.docx
+├── scripts/
+│   ├── FarmtechsolutionsPBL.csv       ← base de dados dos sensores
+│   ├── importar_oracle.py             ← importação para o Oracle
+│   └── consultas_oracle.sql           ← 10 consultas analíticas
+├── src/
+│   └── (código C/C++ ou Python da Fase 2)
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🗃️ Estrutura da Tabela Oracle
+
+**Base:** `FarmtechsolutionsPBL` | **Tabela:** `sensor_readings`
+
+| Coluna | Tipo Oracle | Descrição |
+|---|---|---|
+| `id` | NUMBER (PK, Identity) | Identificador único auto-incremento |
+| `ts` | TIMESTAMP | Data/hora da leitura do sensor |
+| `humidity` | NUMBER(5,2) | Umidade do solo (%) |
+| `ph` | NUMBER(4,2) | pH do solo |
+| `n_nutrient` | NUMBER(1) | Presença de Nitrogênio (0/1) |
+| `p_nutrient` | NUMBER(1) | Presença de Fósforo (0/1) |
+| `k_nutrient` | NUMBER(1) | Presença de Potássio (0/1) |
+| `rain_chance` | NUMBER(3) | Probabilidade de chuva (%) |
+| `rain_mm` | NUMBER(5,2) | Volume de chuva (mm) |
+| `pump_status` | VARCHAR2(3) | Estado da bomba: ON ou OFF |
+
+---
+
+## 🔧 Como executar o código
+
+### Pré-requisitos
+
+- Oracle Database XE 21c (ou superior) instalado e em execução
+- Python 3.9+
+- Biblioteca `oracledb`: `pip install oracledb`
+- Oracle SQL Developer (para visualização e execução das consultas)
+
+### Fase 1 — Configurar a conexão
+
+Edite as variáveis no topo do arquivo `scripts/importar_oracle.py`:
+
+```python
+DB_USER     = "seu_usuario"
+DB_PASSWORD = "sua_senha"
+DB_DSN      = "localhost:1521/XEPDB1"
+```
+
+### Fase 2 — Importar os dados para o Oracle
+
+```bash
+cd scripts
+python importar_oracle.py
+```
+
+O script irá:
+1. Criar (ou recriar) a tabela `sensor_readings`
+2. Ler o arquivo `FarmtechsolutionsPBL.csv`
+3. Inserir os 48 registros em lote via `executemany`
+4. Exibir confirmação com total de registros importados
+
+### Fase 3 — Executar as consultas
+
+Abra o arquivo `scripts/consultas_oracle.sql` no **Oracle SQL Developer** e execute cada consulta individualmente, capturando os prints de tela.
+
+```sql
+-- Exemplo: total de registros
+SELECT COUNT(*) AS total_registros FROM sensor_readings;
+```
+
+---
+
+## 🗃 Histórico de lançamentos
+
+- 0.3.0 - 02/05/2026 — Fase 3: importação Oracle + 10 consultas SQL analíticas
+- 0.2.0 - 14/04/2026 — Fase 2: código C/C++ de coleta de dados dos sensores
+- 0.1.0 - 23/03/2026 — Fase 1: concepção da FarmTech Solutions e modelagem inicial
+
+---
+
