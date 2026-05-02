@@ -148,7 +148,7 @@ O script irá:
 
 ## 🗃 Histórico de lançamentos
 
-- 0.3.0 - 02/05/2026 — Fase 3: importação Oracle + 10 consultas SQL analíticas
+- 0.3.0 - 02/05/2026 — Fase 3: importação Oracle + consultas SQL analíticas
 - 0.2.0 - 14/04/2026 — Fase 2: código C/C++ de coleta de dados dos sensores
 - 0.1.0 - 23/03/2026 — Fase 1: concepção da FarmTech Solutions e modelagem inicial
 
