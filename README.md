@@ -120,6 +120,28 @@ Abra o arquivo `scripts/consultas_oracle.sql` no **Oracle SQL Developer** e exec
 -- Exemplo: total de registros
 SELECT COUNT(*) AS total_registros FROM sensor_readings;
 ```
+## Visualizações dos Dados
+
+### Dashboard Geral
+![Dashboard FarmTech](assets/graficos/dashboard_geral.png)
+
+### Umidade do Solo ao longo do tempo
+![Umidade](assets/graficos/grafico_umidade.png)
+
+### pH do Solo
+![pH](assets/graficos/grafico_ph.png)
+
+### Chuva e Probabilidade de Precipitação
+![Chuva](assets/graficos/grafico_chuva.png)
+
+### Consulta 4 — Acionamentos da Bomba
+![Bomba](assets/graficos/consulta4_bomba.png)
+
+### Consulta 7 — Nutrientes N, P, K
+![Nutrientes](assets/graficos/consulta7_nutrientes.png)
+
+### Consulta 9 — Médias por Hora
+![Por Hora](assets/graficos/consulta9_por_hora.png)
 
 ---
 
