@@ -1,4 +1,3 @@
-(https://github.com/user-attachments/files/27303730/README.8.md)
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
@@ -17,13 +16,13 @@
 
 ## 📜 Descrição
 
-O PBL (Project-Based Learning) do Curso de Inteligência Artificial da FIAP simula a trajetória de crescimento de uma startup. A empresa fictícia **FarmTech Solutions** atua como consultoria em soluções tecnológicas para o agronegócio — setor apontado como um dos mais promissores para aplicação de IA no Brasil, segundo o *Global AI Jobs Barometer* da PwC (2025).
+O PBL (Project-Based Learning) do Curso de Inteligência Artificial da FIAP simula a trajetória de crescimento de uma startup. A empresa fictícia FarmTech Solutions atua como consultoria em soluções tecnológicas para o agronegócio — setor apontado como um dos mais promissores para aplicação de IA no Brasil, segundo o Global AI Jobs Barometer da PwC (2025).
 
-Nesta **Fase 3**, os dados coletados pelos sensores da Fase 2 são carregados em um banco de dados relacional **Oracle**. Os sensores simulados via código C/C++ (Arduino/ESP32) registram, a cada 5 minutos, variáveis críticas do solo e da irrigação: umidade, pH, presença de nutrientes (N, P, K), probabilidade de chuva, volume pluviométrico e estado da bomba d'água.
+Nesta Fase 3, os dados coletados pelos sensores da Fase 2 são carregados em um banco de dados relacional Oracle. Os sensores simulados via código C/C++ (Arduino/ESP32) registram, a cada 5 minutos, variáveis críticas do solo e da irrigação: umidade, pH, presença de nutrientes (N, P, K), probabilidade de chuva, volume pluviométrico e estado da bomba d'água.
 
-O arquivo de dados foi nomeado como **FarmtechsolutionsPBL** e carregado em uma instância Oracle. A tabela `sensor_readings` foi criada via DDL, e a importação automatizada foi realizada por script Python utilizando a biblioteca `oracledb`. Ao todo, **48 registros** foram importados, correspondendo a leituras coletadas em 14/04/2026 das 07:00 às 10:55.
+O arquivo de dados foi nomeado como FarmtechsolutionsPBL e carregado em uma instância Oracle (oracle.fiap.com.br). A tabela sensor_readings foi criada via DDL, e a importação automatizada foi realizada por script Python utilizando a biblioteca oracledb. Ao todo, 48 registros foram importados, correspondendo a leituras coletadas em 14/04/2026 das 07:00 às 10:55.
 
-Após a importação, foram executadas **10 consultas SQL analíticas** no Oracle SQL Developer, abrangendo estatísticas descritivas, análise de acionamentos da bomba, detecção de leituras críticas (baixa umidade + ausência de nutrientes), leituras com pH fora da faixa ideal e visão agregada por hora. Os resultados demonstram que a bomba foi acionada em 45,8% das leituras, o pH médio do solo ficou em 6,04 e a umidade média foi de 50,9%.
+Após a importação, foram executadas 10 consultas SQL analíticas no Oracle, abrangendo estatísticas descritivas, análise de acionamentos da bomba, detecção de leituras críticas (baixa umidade + ausência de nutrientes), leituras com pH fora da faixa ideal e visão agregada por hora. Os resultados demonstram que a bomba foi acionada em 45,8% das leituras, o pH médio do solo ficou em 6,04 e a umidade média foi de 50,92%.
 
 ---
 
@@ -31,53 +30,64 @@ Após a importação, foram executadas **10 consultas SQL analíticas** no Oracl
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
-- **.github**: Arquivos de configuração do GitHub para gerenciar e automatizar processos no repositório.
-- **assets**: Arquivos relacionados a elementos não-estruturados, como imagens e o logo da FIAP.
-- **config**: Arquivos de configuração usados para parâmetros e ajustes do projeto (ex: string de conexão Oracle).
-- **document**: Documentos do projeto solicitados pelas atividades. Na subpasta `other`, documentos complementares.
-- **scripts**: Scripts auxiliares para tarefas específicas — neste projeto, o script de importação Oracle e as consultas SQL.
-- **src**: Todo o código fonte criado para o desenvolvimento do projeto ao longo das fases (inclui código C/C++ da Fase 2).
-- **README.md**: Arquivo que serve como guia e explicação geral sobre o projeto.
+.github: Arquivos de configuração do GitHub para gerenciar e automatizar processos no repositório.
+assets: Arquivos relacionados a elementos não-estruturados, como imagens, logo da FIAP e gráficos gerados pelo script Python.
+config: Arquivos de configuração usados para parâmetros e ajustes do projeto.
+document: Documentos do projeto solicitados pelas atividades. Na subpasta other, documentos complementares.
+scripts: Scripts auxiliares — neste projeto, o script principal de importação e análise Oracle e as consultas SQL.
+src: Todo o código fonte criado ao longo das fases (inclui código C/C++ da Fase 2).
+README.md: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 ```
-📦 farmtech-pbl/
+📦 cursotiao-pbl-fase3-DK/
 │
 ├── .github/
 ├── assets/
-│   └── logo-fiap.png
+│   ├── logo-fiap.png
+│   ├── graficos/
+│   │   ├── dashboard_geral.png
+│   │   ├── grafico_umidade.png
+│   │   ├── grafico_ph.png
+│   │   ├── grafico_chuva.png
+│   │   ├── consulta4_bomba.png
+│   │   ├── consulta7_nutrientes.png
+│   │   └── consulta9_por_hora.png
+│   └── prints/
+│       ├── 01_conexao_oracle.png
+│       ├── 02_tabela_criada.png
+│       └── ...
 ├── config/
 ├── document/
 │   └── other/
 │       └── Relatorio_FarmTech_PBL_Fase3.docx
 ├── scripts/
 │   ├── FarmtechsolutionsPBL.csv       ← base de dados dos sensores
-│   ├── importar_oracle.py             ← importação para o Oracle
-│   └── consultas_oracle.sql           ← 10 consultas analíticas
+│   ├── farmtech_oracle.py             ← script principal Python + Oracle
+│   └── consultas_oracle.sql           ← 10 consultas analíticas SQL
 ├── src/
-│   └── (código C/C++ ou Python da Fase 2)
+│   ├── Fase 2 - Farm Tech - Irrigacao.py   ← código Fase 2
+│   └── weather_fetch.py                    ← busca meteorológica API
 ├── .gitignore
 └── README.md
-```
 
+```
 ---
 
 ## 🗃️ Estrutura da Tabela Oracle
-
-**Base:** `FarmtechsolutionsPBL` | **Tabela:** `sensor_readings`
-
+**Base:** `FarmtechsolutionsPBL` | **Servidor:** `oracle.fiap.com.br:1521/ORCL` | **Tabela:** `sensor_readings`
+ 
 | Coluna | Tipo Oracle | Descrição |
 |---|---|---|
 | `id` | NUMBER (PK, Identity) | Identificador único auto-incremento |
 | `ts` | TIMESTAMP | Data/hora da leitura do sensor |
 | `humidity` | NUMBER(5,2) | Umidade do solo (%) |
 | `ph` | NUMBER(4,2) | pH do solo |
-| `n_nutrient` | NUMBER(1) | Presença de Nitrogênio (0/1) |
-| `p_nutrient` | NUMBER(1) | Presença de Fósforo (0/1) |
-| `k_nutrient` | NUMBER(1) | Presença de Potássio (0/1) |
+| `n_nutrient` | NUMBER(1) | Presença de Nitrogênio (0 = ausente / 1 = presente) |
+| `p_nutrient` | NUMBER(1) | Presença de Fósforo (0 = ausente / 1 = presente) |
+| `k_nutrient` | NUMBER(1) | Presença de Potássio (0 = ausente / 1 = presente) |
 | `rain_chance` | NUMBER(3) | Probabilidade de chuva (%) |
-| `rain_mm` | NUMBER(5,2) | Volume de chuva (mm) |
-| `pump_status` | VARCHAR2(3) | Estado da bomba: ON ou OFF |
-
+| `rain_mm` | NUMBER(5,2) | Volume de chuva registrado (mm) |
+| `pump_status` | VARCHAR2(3) | Estado da bomba de irrigação: ON ou OFF |
 ---
 
 ## 🔧 Como executar o código
