@@ -113,13 +113,14 @@ O script irá:
 4. Exibir confirmação com total de registros importados
 
 ### Fase 3 — Executar as consultas
+### Conexão e estrutura
 
-Abra o arquivo `scripts/consultas_oracle.sql` no **Oracle SQL Developer** e execute cada consulta individualmente, capturando os prints de tela.
+| Conexão ativa | Tabela criada | Colunas | Importação dos dados | Acionamentos da bomba de irrigação | Leituras críticas (baixa umidade + nutrientes ausentes)
+<img width="1364" height="724" alt="image" src="https://github.com/user-attachments/assets/7cacb065-fc14-4fa8-93e7-d6dec366336d" />
+<img width="1363" height="727" alt="image" src="https://github.com/user-attachments/assets/c7ec5010-1988-496b-9ee7-5fddeb623841" />
+<img width="1365" height="724" alt="image" src="https://github.com/user-attachments/assets/b9e29078-9bf5-47c3-a31c-1bcb8efb28e7" />
+<img width="1364" height="729" alt="image" src="https://github.com/user-attachments/assets/6191d4b8-2083-4278-a81b-fb4f4b16e908" />
 
-```sql
--- Exemplo: total de registros
-SELECT COUNT(*) AS total_registros FROM sensor_readings;
-```
 ## Visualizações dos Dados
 
 ### Dashboard Geral
