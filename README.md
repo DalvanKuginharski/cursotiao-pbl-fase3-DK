@@ -28,7 +28,7 @@ Após a importação, foram executadas consultas SQL analíticas no Oracle, abra
  
 > Demonstração completa do projeto: conexão Oracle, importação do CSV, execução das consultas SQL e Python.
  
-https://youtu.be/Uf1IslsB2xU 
+https://youtu.be/T5cdZg96T_c 
  
 > 🔒 Vídeo publicado como **não listado** no YouTube.
 
